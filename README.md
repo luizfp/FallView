@@ -12,7 +12,7 @@ In your `build.gradle`:
 
 ```gradle
  dependencies {
-   compile 'SOON'
+   compile 'br.com.luizfp:fall-view:1.0.0'
  }
 ```
 ## How to use
