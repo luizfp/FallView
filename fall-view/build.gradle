@@ -10,8 +10,8 @@ ext {
 
     libraryDescription = 'A fall effect for any view'
 
-    siteUrl = 'https://github.com/luizfp/FallAnyView'
-    gitUrl = 'https://github.com/luizfp/FallAnyView.git'
+    siteUrl = 'https://github.com/luizfp/FallView'
+    gitUrl = 'https://github.com/luizfp/FallView.git'
 
     libraryVersion = '1.0.0'
 
@@ -29,7 +29,7 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        minSdkVersion 10
+        minSdkVersion 11
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
