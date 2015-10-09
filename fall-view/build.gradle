@@ -5,7 +5,7 @@ ext {
     bintrayName = 'fall-view'
 
     publishedGroupId = 'br.com.luizfp'
-    libraryName = 'FallView'
+    libraryName = 'fall-view'
     artifact = 'fall-view'
 
     libraryDescription = 'A fall effect for any view'
