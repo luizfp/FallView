@@ -18,13 +18,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final FallView fallView = new FallView(this);
-
         final ImageView img = (ImageView)findViewById(R.id.img);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fallView.fallThisView(img).setFallDuration(2500).start();
+                FallView.fall(img).setFallDuration(2500).start();
             }
         });
 
@@ -32,9 +30,10 @@ public class MainActivity extends AppCompatActivity {
         txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fallView.fallThisView(txt);
-                fallView.setFallRotationSide(FallView.TO_RIGHT);
-                fallView.start();
+                FallView
+                        .fall(txt)
+                        .setFallRotationSide(FallView.TO_RIGHT)
+                        .start();
             }
         });
 
@@ -42,9 +41,10 @@ public class MainActivity extends AppCompatActivity {
         txt1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fallView.fallThisView(txt1);
-                fallView.setFallRotationSide(FallView.TO_LEFT);
-                fallView.start();
+                FallView
+                        .fall(txt1)
+                        .setFallRotationSide(FallView.TO_LEFT)
+                        .start();
             }
         });
 
@@ -52,9 +52,10 @@ public class MainActivity extends AppCompatActivity {
         txt2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fallView.fallThisView(txt2);
-                fallView.setFallRotationSide(FallView.TO_RIGHT);
-                fallView.start();
+                FallView
+                        .fall(txt2)
+                        .setFallRotationSide(FallView.TO_RIGHT)
+                        .start();
             }
         });
 
@@ -65,11 +66,11 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                fallView.fallThisView(btn)
+                FallView.fall(btn)
                         .setFallDuration(2500)
                         .setFallRotationSide(FallView.TO_LEFT)
                         .start();
-                fallView.fallThisView(edt)
+                FallView.fall(edt)
                         .setFallDuration(1500)
                         .setFallRotationSide(FallView.TO_RIGHT)
                         .start();
