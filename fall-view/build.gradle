@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
 
 ext {
     bintrayRepo = 'maven'
@@ -13,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/luizfp/FallView'
     gitUrl = 'https://github.com/luizfp/FallView.git'
 
-    libraryVersion = '1.0.0'
+    libraryVersion = '1.0.1'
 
     developerId = 'luizfp'
     developerName = 'Luiz Felipe Pereira'
