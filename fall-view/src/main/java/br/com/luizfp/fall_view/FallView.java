@@ -20,6 +20,7 @@ public class FallView implements Animator.AnimatorListener {
     private float mScreenHeight;
     private View mView;
     private volatile static FallView sInstance;
+    private boolean mListenerSet;
 
     private FallView(View view) {
         this.mView = view;
@@ -36,6 +37,7 @@ public class FallView implements Animator.AnimatorListener {
             }
         }
 
+        sInstance.mListenerSet = false;
         sInstance.mView = view;
         return sInstance;
     }
@@ -60,7 +62,8 @@ public class FallView implements Animator.AnimatorListener {
         AnimatorSet anim = new AnimatorSet();
         anim.setDuration(duration);
         anim.playTogether(rotation, translationY);
-        anim.addListener(this);
+        if (mListenerSet)
+            anim.addListener(mListener);
         anim.start();
 
         // Para não usar sempre a mesma duração e nem sentido de rotação
@@ -79,6 +82,7 @@ public class FallView implements Animator.AnimatorListener {
     }
 
     public FallView setListener(Animator.AnimatorListener listener) {
+        sInstance.mListenerSet = true;
         sInstance.mListener = listener;
         return sInstance;
     }
@@ -90,29 +94,25 @@ public class FallView implements Animator.AnimatorListener {
 
     @Override
     public void onAnimationStart(Animator animation) {
-        if (mListener != null)
-            mListener.onAnimationStart(animation);
+        if (animation.getListeners() != null && animation.getListeners().size() > 0)
+            animation.getListeners().get(0).onAnimationStart(animation);
     }
 
     @Override
     public void onAnimationEnd(Animator animation) {
-        if (mListener != null)
-            mListener.onAnimationEnd(animation);
-
-        // Se a animação acabou, não precisamos mais do listener e é preciso setar para null
-        // senão outras animações vão usar o mesmo listener
-        this.mListener = null;
+        if (animation.getListeners() != null && animation.getListeners().size() > 0)
+            animation.getListeners().get(0).onAnimationEnd(animation);
     }
 
     @Override
     public void onAnimationCancel(Animator animation) {
-        if (mListener != null)
-            mListener.onAnimationCancel(animation);
+        if (animation.getListeners() != null && animation.getListeners().size() > 0)
+            animation.getListeners().get(0).onAnimationCancel(animation);
     }
 
     @Override
     public void onAnimationRepeat(Animator animation) {
-        if (mListener != null)
-            mListener.onAnimationRepeat(animation);
+        if (animation.getListeners() != null && animation.getListeners().size() > 0)
+            animation.getListeners().get(0).onAnimationRepeat(animation);
     }
 }
