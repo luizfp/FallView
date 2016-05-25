@@ -12,14 +12,13 @@ In your `build.gradle`:
 
 ```gradle
  dependencies {
-   compile 'br.com.luizfp:fall-view:1.0.0'
+   compile 'br.com.luizfp:fall-view:1.0.1'
  }
 ```
 ## How to use
 
 ```java
-FallView fallView = new FallView(this);
-fallView.fallThisView(view).start();
+FallView.fall(view).start();
 ```
 
 ## License
