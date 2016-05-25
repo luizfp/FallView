@@ -1,5 +1,6 @@
 package br.com.luizfp.fall_view;
 
+import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
@@ -9,10 +10,11 @@ import android.view.View;
 /**
  * Created by luiz on 10/6/15.
  */
-public class FallView {
+public class FallView implements Animator.AnimatorListener {
     private static final long DEFAULT_DURATION = 1000;
     public static final String TO_RIGHT = "RIGHT";
     public static final String TO_LEFT = "LEFT";
+    private Animator.AnimatorListener mListener;
     private String mRotationSide;
     private long mDuration;
     private float mScreenHeight;
@@ -58,6 +60,7 @@ public class FallView {
         AnimatorSet anim = new AnimatorSet();
         anim.setDuration(duration);
         anim.playTogether(rotation, translationY);
+        anim.addListener(this);
         anim.start();
 
         // Para não usar sempre a mesma duração e nem sentido de rotação
@@ -75,8 +78,41 @@ public class FallView {
         return sInstance;
     }
 
+    public FallView setListener(Animator.AnimatorListener listener) {
+        sInstance.mListener = listener;
+        return sInstance;
+    }
+
     private float getmScreenHeight(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
         return dm.density * dm.heightPixels;
+    }
+
+    @Override
+    public void onAnimationStart(Animator animation) {
+        if (mListener != null)
+            mListener.onAnimationStart(animation);
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+        if (mListener != null)
+            mListener.onAnimationEnd(animation);
+
+        // Se a animação acabou, não precisamos mais do listener e é preciso setar para null
+        // senão outras animações vão usar o mesmo listener
+        this.mListener = null;
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+        if (mListener != null)
+            mListener.onAnimationCancel(animation);
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+        if (mListener != null)
+            mListener.onAnimationRepeat(animation);
     }
 }

@@ -1,7 +1,9 @@
 package br.com.luizfp.fallview;
 
+import android.animation.Animator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -11,7 +13,9 @@ import android.widget.TextView;
 import br.com.luizfp.fall_view.FallView;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Animator.AnimatorListener {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,7 +26,11 @@ public class MainActivity extends AppCompatActivity {
         img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FallView.fall(img).setFallDuration(2500).start();
+                FallView
+                        .fall(img)
+                        .setFallDuration(2500)
+                        .setListener(MainActivity.this)
+                        .start();
             }
         });
 
@@ -76,6 +84,26 @@ public class MainActivity extends AppCompatActivity {
                         .start();
             }
         });
+    }
+
+    @Override
+    public void onAnimationStart(Animator animation) {
+        Log.d(TAG, "onAnimationStart()");
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animation) {
+        Log.d(TAG, "onAnimationEnd()");
+    }
+
+    @Override
+    public void onAnimationCancel(Animator animation) {
+        Log.d(TAG, "onAnimationCancel()");
+    }
+
+    @Override
+    public void onAnimationRepeat(Animator animation) {
+        Log.d(TAG, "onAnimationRepeat()");
     }
 }
 
