@@ -26,7 +26,7 @@ public class FallView implements Animator.AnimatorListener {
     private FallView(View view) {
         this.mView = view;
         // Só calcula altura da tela se já não tiver calculado
-        this.mScreenHeight = mScreenHeight == 0 ? getmScreenHeight(mView.getContext()) : mScreenHeight;
+        this.mScreenHeight = mScreenHeight == 0 ? getScreenHeightInPixels(mView.getContext()) : mScreenHeight;
     }
 
     public static FallView fall(View view) {
@@ -95,9 +95,9 @@ public class FallView implements Animator.AnimatorListener {
         return sInstance;
     }
 
-    private float getmScreenHeight(Context context) {
+    private float getScreenHeightInPixels(Context context) {
         DisplayMetrics dm = context.getResources().getDisplayMetrics();
-        return dm.density * dm.heightPixels;
+        return dm.heightPixels;
     }
 
     @Override
