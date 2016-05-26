@@ -51,7 +51,7 @@ public class FallView implements Animator.AnimatorListener {
         long duration = ((this.mDuration > 0) ? this.mDuration : DEFAULT_DURATION);
 
         ObjectAnimator rotation = ObjectAnimator.ofFloat(mView, "rotation", 0f, 0f);
-        ObjectAnimator translationY = ObjectAnimator.ofFloat(mView, "translationY", 0f, mScreenHeight);
+        ObjectAnimator translationY = ObjectAnimator.ofFloat(mView, "translationY", 0f, mScreenHeight - mView.getY());
 
         // Assim o default será a rotação para a esquerda
         if (mRotationSide != null && mRotationSide.equals(TO_RIGHT)) {
