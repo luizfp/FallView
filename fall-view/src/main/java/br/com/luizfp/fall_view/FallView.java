@@ -21,6 +21,7 @@ public class FallView implements Animator.AnimatorListener {
     private View mView;
     private volatile static FallView sInstance;
     private boolean mListenerSet;
+    private long mStartDelay;
 
     private FallView(View view) {
         this.mView = view;
@@ -61,6 +62,7 @@ public class FallView implements Animator.AnimatorListener {
 
         AnimatorSet anim = new AnimatorSet();
         anim.setDuration(duration);
+        anim.setStartDelay(mStartDelay);
         anim.playTogether(rotation, translationY);
         if (mListenerSet)
             anim.addListener(mListener);
@@ -68,6 +70,7 @@ public class FallView implements Animator.AnimatorListener {
 
         // Para não usar sempre a mesma duração e nem sentido de rotação
         this.mDuration = -1;
+        this.mStartDelay = 0;
         this.mRotationSide = null;
     }
 
@@ -76,8 +79,13 @@ public class FallView implements Animator.AnimatorListener {
         return sInstance;
     }
 
-    public FallView setFallDuration(long duration) {
+    public FallView setDuration(long duration) {
         sInstance.mDuration = duration;
+        return sInstance;
+    }
+
+    public FallView setStartDelay(long startDelay) {
+        sInstance.mStartDelay = startDelay;
         return sInstance;
     }
 

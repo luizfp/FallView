@@ -16,7 +16,7 @@ ext {
     siteUrl = 'https://github.com/luizfp/FallView'
     gitUrl = 'https://github.com/luizfp/FallView.git'
 
-    libraryVersion = '1.0.3'
+    libraryVersion = '1.0.4'
 
     developerId = 'luizfp'
     developerName = 'Luiz Felipe Pereira'

@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             public void onClick(View v) {
                 FallView
                         .fall(img)
-                        .setFallDuration(2500)
+                        .setDuration(2500)
                         .setListener(MainActivity.this)
                         .start();
             }
@@ -75,11 +75,11 @@ public class MainActivity extends AppCompatActivity implements Animator.Animator
             @Override
             public void onClick(View v) {
                 FallView.fall(btn)
-                        .setFallDuration(2500)
+                        .setDuration(2500)
                         .setFallRotationSide(FallView.TO_LEFT)
                         .start();
                 FallView.fall(edt)
-                        .setFallDuration(1500)
+                        .setDuration(1500)
                         .setFallRotationSide(FallView.TO_RIGHT)
                         .start();
             }
