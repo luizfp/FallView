@@ -3,6 +3,7 @@ package br.com.luizfp.fall_view;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.animation.TimeInterpolator;
 import android.content.Context;
 import android.util.DisplayMetrics;
 import android.view.View;
@@ -20,6 +21,8 @@ public class FallView implements Animator.AnimatorListener {
     private float mScreenHeight;
     private View mView;
     private volatile static FallView sInstance;
+    private TimeInterpolator mInterpolator;
+    private boolean mInterpolatorSet;
     private boolean mListenerSet;
     private long mStartDelay;
 
@@ -39,6 +42,7 @@ public class FallView implements Animator.AnimatorListener {
         }
 
         sInstance.mListenerSet = false;
+        sInstance.mInterpolatorSet = false;
         sInstance.mView = view;
         return sInstance;
     }
@@ -63,6 +67,8 @@ public class FallView implements Animator.AnimatorListener {
         AnimatorSet anim = new AnimatorSet();
         anim.setDuration(duration);
         anim.setStartDelay(mStartDelay);
+        if (mInterpolatorSet)
+            anim.setInterpolator(mInterpolator);
         anim.playTogether(rotation, translationY);
         if (mListenerSet)
             anim.addListener(mListener);
@@ -92,6 +98,12 @@ public class FallView implements Animator.AnimatorListener {
     public FallView setListener(Animator.AnimatorListener listener) {
         sInstance.mListenerSet = true;
         sInstance.mListener = listener;
+        return sInstance;
+    }
+
+    public FallView setInterpolator(TimeInterpolator interpolator) {
+        sInstance.mInterpolatorSet = true;
+        sInstance.mInterpolator = interpolator;
         return sInstance;
     }
 
